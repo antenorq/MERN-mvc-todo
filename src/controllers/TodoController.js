@@ -1,24 +1,38 @@
-import Todo from "../models/Todo.js";
+import TodoRepository from "../repositories/TodoRepository.js";
 
 class TodoController {
+  //INDEX - LIST ALL TODOS
   async index(req, res) {
-    try {
-      const todos = await Todo.find().sort({ createdAt: "desc" });
-
-      //check if todos exists
-      if (todos) {
-        res.status(200).json(todos);
-      } else {
-        res.status(422).json({ errors: ["Todos list empty"] });
-        return;
-      }
-    } catch (error) {
-      res.status(500).json({ errors: [error.message] });
-    }
+    const result = await TodoRepository.findAll();
+    res.status(200).json(result);
   }
-  show() {}
-  store() {}
-  update() {}
-  delete() {}
+
+  //SHOW - show a specific todo
+  async show(req, res) {
+    const { id } = req.params;
+    const result = await TodoRepository.findById(id);
+    res.status(200).json(result);
+  }
+
+  //STORE - INSERT new todo
+  async store(req, res) {
+    const result = await TodoRepository.create(req);
+    res.status(200).json(result);
+  }
+
+  //UPDATE - Update a todo
+  async update(req, res) {
+    const { id } = req.params;
+    const result = await TodoRepository.update(req, id);
+    res.status(200).json(result);
+  }
+
+  //DELETE
+  async delete(req, res) {
+    const { id } = req.params;
+    const result = await TodoRepository.delete(id);
+    res.status(200).json(result);
+  }
 }
+
 export default new TodoController();

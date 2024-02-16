@@ -1,11 +1,11 @@
-import mongoose, { ObjectId, model } from "mongoose";
+import mongoose, { model } from "mongoose";
 const { Schema } = mongoose;
 
 const todoSchema = new Schema(
   {
     task: String,
     status: Boolean,
-    categoryId: { type: ObjectId, ref: "Category" },
+    categoryId: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
   },
   { timestamps: true }
 );

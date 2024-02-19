@@ -13,7 +13,7 @@ const conn = async () => {
     const dbConn = await mongoose.connect(
       `mongodb+srv://${dbUser}:${dbPassword}@cluster0.y9pxsuw.mongodb.net/MERN-mvc-todo?retryWrites=true&w=majority`
     );
-    console.log("Database Connected!! " + dbUser);
+    console.log("Database Connected!!! " + dbUser);
 
     return dbConn;
   } catch (error) {

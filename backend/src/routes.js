@@ -4,7 +4,7 @@ import TodoController from "./controllers/TodoController.js";
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.send("api node express running");
+  res.send("api node express running 5");
 });
 
 router.get("/todo_list", TodoController.index);
